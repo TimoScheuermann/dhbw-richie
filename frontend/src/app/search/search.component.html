@@ -5,11 +5,7 @@
     <div class="searchWrapper">
       <div class="searchBar">
         <div class="inputWrapper">
-          <input
-            type="text"
-            [(ngModel)]="searchQuery"
-            (keydown)="onInputKeyDown($event)"
-          />
+          <input type="text" [(ngModel)]="searchQuery" (keydown)="onInputKeyDown($event, searchQuery)" />
         </div>
         <div class="search" (click)="startSearch()">
           <i class="fas fa-search"></i>
@@ -32,18 +28,15 @@
     <div class="information">
       <h3>Frage</h3>
       <textarea>
-<!-- TODO: Hier soll die ursprüngliche Frage angezeigt werden --></textarea
-      >
+<!-- TODO: Hier soll die ursprüngliche Frage angezeigt werden --></textarea>
       <div class="splitter_"></div>
       <h3>Antwort</h3>
       <textarea>
-<!-- TODO: Hier soll die ursprüngliche Antwort angezeigt werden --></textarea
-      >
+<!-- TODO: Hier soll die ursprüngliche Antwort angezeigt werden --></textarea>
       <div class="splitter_"></div>
       <h3>Quelle</h3>
       <textarea>
-<!-- TODO: Hier soll die ursprüngliche Quelle angezeigt werden --></textarea
-      >
+<!-- TODO: Hier soll die ursprüngliche Quelle angezeigt werden --></textarea>
     </div>
     <div style="display: block; text-align: center; margin-top: 10px;">
       <div red tabindex="5" class="iconButton" id="delete" (click)="deleteQuestion()">
@@ -96,11 +89,7 @@
         </div>
         <div class="selectionWrapper" [ngStyle]="selectionStyle">
           <div class="selection" sTitle="Vorlesung wählen">
-            <div
-              *ngFor="let lecture of lectures"
-              class="item"
-              (click)="setLecture(lecture)"
-            >
+            <div *ngFor="let lecture of lectures" class="item" (click)="setLecture(lecture)">
               {{ lecture }}
             </div>
           </div>
@@ -114,11 +103,7 @@
         </div>
         <div class="selectionWrapper" [ngStyle]="selectionStyle">
           <div class="selection" sTitle="Vorlesung wählen">
-            <div
-              *ngFor="let lecture of lectures"
-              class="item"
-              (click)="setLecture(lecture)"
-            >
+            <div *ngFor="let lecture of lectures" class="item" (click)="setLecture(lecture)">
               {{ lecture }}
             </div>
           </div>
@@ -136,30 +121,16 @@
       <div class="question">{{ result.question }}</div>
       <div class="answer">{{ result.answer }}</div>
       <div class="actions">
-        <div
-          class="action"
-          active="true"
-          description="329"
-          style="color: rgb(52, 199, 89)"
-        >
+        <div class="action" active="true" description="329" style="color: rgb(52, 199, 89)">
           <i class="fad fa-thumbs-up"></i>
         </div>
         <div class="action" description="13" style="color: rgb(255, 59, 48)">
           <i class="fad fa-thumbs-down"></i>
         </div>
-        <div
-          class="action"
-          description="Feedback"
-          style="color: #08f"
-          (click)="openUserCard()"
-        >
+        <div class="action" description="Feedback" style="color: #08f" (click)="openUserCard()">
           <i class="fab fa-wpforms"></i>
         </div>
-        <div
-          class="action"
-          [routerLink]="['/question', 3647364276]"
-          description="Vergrößern"
-        >
+        <div class="action" [routerLink]="['/question', 3647364276]" description="Vergrößern">
           <i class="fad fa-external-link"></i>
         </div>
       </div>

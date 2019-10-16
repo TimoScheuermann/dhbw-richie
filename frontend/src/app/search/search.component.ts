@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { Globals, NotificationType } from '../globals';
+import { StringMapWithRename } from '@angular/compiler/src/compiler_facade_interface';
+import { QuestionService } from '../services/question.service';
+import { Question } from '../models/question.model';
 
 @Component({
   selector: 'app-search',
@@ -12,8 +15,11 @@ export class SearchComponent implements AfterViewInit {
     //   this.startSearch();
     // }, 20);
   }
-  constructor(public globals: Globals) {
-    for (let i = 0; i < 35; i++) {
+  constructor(
+    public globals: Globals,
+    private readonly questionService: QuestionService) {
+
+    /*for (let i = 0; i < 35; i++) {
       let question_addition = '';
       let answer_addition = '';
       for (let x = 0; x < Math.random() * 200; x++) {
@@ -34,7 +40,7 @@ export class SearchComponent implements AfterViewInit {
         question: '1 mod x = 2' + question_addition,
         answer: 'Rel. ez. 1+1 = 2' + answer_addition
       });
-    }
+    }*/
   }
 
   selectionStyle: any = { opacity: 0.7 };
@@ -54,7 +60,7 @@ export class SearchComponent implements AfterViewInit {
   ];
 
   searchQuery = '';
-  results = [];
+  results: Question[] = [];
 
   resultsWrapper = {
     'max-height': '0px',
@@ -111,8 +117,8 @@ export class SearchComponent implements AfterViewInit {
   //   event.stopPropagation();
   // }
 
-  onInputKeyDown(event) {
-    if (event.key == 'Enter') this.startSearch();
+  onInputKeyDown(event, question: string) {
+    if (event.key == 'Enter') this.startSearch(question);
   }
 
   // openUserCard() {
@@ -141,9 +147,10 @@ export class SearchComponent implements AfterViewInit {
   //   this.closeUserCard;
   // }
 
-  startSearch() {
+  async startSearch(question: string) {
     if (this.isSearching) return;
     this.isSearching = true;
+    this.results = await this.questionService.getAnswers(question);
 
     setTimeout(() => {
       this.globals.sendNotification(

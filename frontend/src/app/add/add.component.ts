@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Globals, NotificationType } from '../globals';
+import { Question } from '../models/question.model';
 
 @Component({
   selector: 'app-add',
@@ -7,7 +8,9 @@ import { Globals, NotificationType } from '../globals';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent {
-  constructor(public globals: Globals) {}
+  constructor(
+    public globals: Globals,
+    private readonly questionService: QuestionService) { }
 
   selectionClass: string = 'hideSelect';
   formData = ['', '', '', ''];
@@ -50,6 +53,7 @@ export class AddComponent {
 
   submitQuestion() {
     if (this.formData.filter(x => x.length < 1).length == 0) {
+      this.questionService.addQuestion(Question);
       this.globals.sendNotification(
         'Deine Frage wurde eingereicht. Danke!',
         NotificationType.SUCCESS
