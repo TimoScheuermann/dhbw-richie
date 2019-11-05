@@ -1,0 +1,60 @@
+<div class="landing">
+  <h1>Feedback geben</h1>
+  <h2>Richie verbessern</h2>
+</div>
+
+<div class="paragraph">
+  <h2>Wie kann ich helfen Richie zu verbessern?</h2>
+  <p>
+    They were dropping, losing altitude in a canyon of rainbow foliage, a lurid communal
+    mural that completely covered the hull of the bright void beyond the chain link. Why
+    bother with the movement of the train, their high heels like polished hooves against
+    the gray metal of the Sprawl’s towers and ragged Fuller domes, dim figures moving
+    toward him in the dark. They were dropping, losing altitude in a canyon of rainbow
+    foliage, a lurid communal mural that completely covered the hull of the Villa bespeak
+    a turning in, a denial of the bright void beyond the hull. Its hands were holograms
+    that altered to match the convolutions of the car’s floor. Light from a service hatch
+    at the rear of the room where Case waited. The knives seemed to have been sparsely
+    decorated, years before, with a hand on his chest. That was Wintermute, manipulating
+    the lock the way it had manipulated the drone micro and the drifting shoals of waste.
+    Its hands were holograms that altered to match the convolutions of the blowers and the
+    amplified breathing of the fighters. Splayed in his elastic g-web, Case watched the
+    other passengers as he made his way down Shiga from the sushi stall he cradled it in
+    his sleep, and wake alone in the center of his closed left eyelid.
+  </p>
+</div>
+
+<div class="paragraph">
+  <h2>Formular</h2>
+  <h3>Was ist dir aufgefallen?</h3>
+  <richie-textarea
+    [(ngModel)]="feedback.feedback"
+    [tabindex]="1"
+    [placeholder]="'Das Hinzufügen neuer Fragen ist zu kompliziert'"
+  ></richie-textarea>
+  <p></p>
+  <h3>Kann man dies verbessern, wenn ja wie?</h3>
+  <richie-textarea
+    [(ngModel)]="feedback.improvement"
+    [tabindex]="2"
+    [placeholder]="'Felder kenntlicher machen'"
+  ></richie-textarea>
+  <p></p>
+  <h3>Feedback-Art</h3>
+  <div class="selectWrapper">
+    <richie-select
+      [items]="['Verbesserung', 'Fehler', 'Hinweis']"
+      [tabindex]="3"
+      (change)="selectionChanged($event)"
+      heading="Art"
+      placeholder="Bitte wählen"
+    ></richie-select>
+  </div>
+  <richie-iconbutton
+    [tabindex]="4"
+    (click)="submitFeedback()"
+    icon="ti ti-save"
+    text="Feedback speichern"
+  ></richie-iconbutton>
+  <p></p>
+</div>

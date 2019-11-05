@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
+import { FeedbackComponent } from './feedback/feedback.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewComponent } from './review/review.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -23,6 +24,12 @@ const adminRoutes: Routes = [
     data: { title: 'Richie | Settings' }
   },
   {
+    path: 'feedback',
+    component: FeedbackComponent,
+    canActivate: [AuthGuard],
+    data: { title: 'Richie | Feedback' }
+  },
+  {
     path: 'review',
     component: ReviewComponent,
     canActivate: [AuthGuard],
@@ -35,7 +42,13 @@ const adminRoutes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [AdminComponent, LoginComponent, ReviewComponent, SettingsComponent],
+  declarations: [
+    AdminComponent,
+    LoginComponent,
+    ReviewComponent,
+    SettingsComponent,
+    FeedbackComponent
+  ],
   imports: [CommonModule, RouterModule.forChild(adminRoutes), SharedModule, FormsModule]
 })
 export class ManagementModule {}
